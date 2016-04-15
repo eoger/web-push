@@ -1,11 +1,12 @@
 const urlBase64 = require('urlsafe-base64');
 const crypto    = require('crypto');
-const ece       = require('http_ece');
+const ece       = require('http_ece-legacy');
 const url       = require('url');
 const https     = require('https');
 const colors    = require('colors');
 const asn1      = require('asn1.js');
 const jws       = require('jws');
+const Promise   = require('bluebird');
 
 var ECPrivateKeyASN = asn1.define('ECPrivateKey', function() {
   this.seq().obj(

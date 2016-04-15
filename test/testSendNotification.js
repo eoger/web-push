@@ -3,11 +3,13 @@ var crypto     = require('crypto');
 var https      = require('https');
 var fs         = require('fs');
 var webPush    = require('../index');
-var ece        = require('http_ece');
+var ece        = require('http_ece-legacy');
 var urlBase64  = require('urlsafe-base64');
 var semver     = require('semver');
 var portfinder = require('portfinder');
 var jws        = require('jws');
+var Promise    = require('bluebird');
+require('array.prototype.find').shim();
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 

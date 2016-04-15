@@ -9,6 +9,7 @@ var childProcess = require('child_process');
 var seleniumInit = require('./selenium-init');
 var createServer = require('./server');
 var webPush = require('../index.js');
+var Promise = require('bluebird');
 
 if (!process.env.GCM_API_KEY) {
   console.log('You need to set the GCM_API_KEY env variable to run the tests with Chromium.'.bold.red);
@@ -52,6 +53,13 @@ suite('selenium', function() {
       process.env.SELENIUM_MARIONETTE = true;
     }
 
+    if (firefoxBinaryPath) {
+      firefoxBinaryPath = path.resolve(firefoxBinaryPath);
+    }
+    if (chromeBinaryPath) {
+      chromeBinaryPath = path.resolve(chromeBinaryPath);
+    }
+
     process.env.SELENIUM_BROWSER = params.browser;
 
     return createServer(params.payload, params.vapid)
@@ -78,6 +86,7 @@ suite('selenium', function() {
 
       var builder = new webdriver.Builder()
         .forBrowser('firefox')
+        .usingServer('http://localhost:4444/wd/hub')
         .setFirefoxOptions(firefoxOptions)
         .setChromeOptions(chromeOptions);
       driver = builder.build();
@@ -178,7 +187,7 @@ suite('selenium', function() {
 
   teardown(function(done) {
     driver.quit()
-    .catch(function() {})
+    .thenCatch(function() {})
     .then(function() {
       server.close(function() {
         done();

@@ -1,6 +1,11 @@
 # web-push
 > Web Push library for Node.js
 
+This branch is a backport of the web-push module for Node 0.10
+You need to download the selenium server binary and run it before starting the tests.
+
+======
+
 Supports Firefox 44+ and Chromium/Chrome 42+.
 Notifications with payloads are supported in Firefox 44+ and Chromium/Chrome 50+.
 [VAPID](https://tools.ietf.org/html/draft-thomson-webpush-vapid-02) is supported in Firefox 45+ (for notifications without payloads) and in Firefox 46+ for all notifications.

@@ -4,6 +4,7 @@ var fs         = require('fs');
 var path       = require('path');
 var colors     = require('colors');
 var portfinder = require('portfinder');
+var Promise    = require('bluebird');
 
 if (!process.env.GCM_API_KEY) {
   console.error('If you want Chrome to work, you need to set the GCM_API_KEY environment variable to your GCM API key.'.bold.red);

@@ -5,6 +5,7 @@ var child_process = require('child_process');
 var request = require('request');
 var fse = require('fs-extra');
 var dmg = require('dmg');
+var Promise = require('bluebird');
 
 function spawnHelper(command, args) {
   return new Promise(function(resolve, reject) {
